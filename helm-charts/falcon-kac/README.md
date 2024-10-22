@@ -6,7 +6,7 @@ Admission control policies tell the Falcon KAC what to do when it observes an In
 Together, the Falcon KAC and the admission control policies provide continuous visibility and protection across your Kubernetes cluster.
 
 
-# Getting Started
+# Getting Started with Stuff
 To install and deploy the Falcon Kubernetes Admission Controller, your cluster environment must meet these requirements:
 
 - Helm 3.x is installed and available in PATH
