@@ -2,6 +2,7 @@ name: Lint and Test Falcon Node Sensor
 
 on:
   push:
+    branches: [ main ]
     paths:
       - 'helm-charts/falcon-sensor/**'
       - '.github/workflows/helm-node-sensor.yaml'

@@ -1,11 +1,12 @@
-name: Release Helm Charts
+name: Release Helm Chart
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'helm-charts/**'
+    tags:
+      - release-*
+
+env:
+  CHART_RELEASER_VERSION: 1.6.1
 
 jobs:
   release:
@@ -15,7 +16,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
+      
+      - name: Locate chart to release
+        run: |
+          CHART_NAME=$(cut -c 9- <<< ${{ github.ref_name }})
+          if [[ ! -d "helm-charts/$CHART_NAME" ]]; then echo "::error::No Helm chart found at helm-charts/$CHART_NAME"; exit 1; fi
+          echo "CHART_NAME=$CHART_NAME" >> $GITHUB_ENV
+ 
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
@@ -25,11 +32,27 @@ jobs:
         uses: azure/setup-helm@v4
         with:
           version: v3.8.1
+ 
+      - name: Install chart-releaser
+        run: |
+          curl -sSLo cr.tar.gz "https://github.com/helm/chart-releaser/releases/download/v${CHART_RELEASER_VERSION}/chart-releaser_${CHART_RELEASER_VERSION}_linux_amd64.tar.gz"
+          mkdir ${{runner.temp}}/chart-releaser
+          tar -xzf cr.tar.gz -C "${{runner.temp}}/chart-releaser"
+          rm -f cr.tar.gz
+          echo "${{runner.temp}}/chart-releaser" >> $GITHUB_PATH
 
+      - name: Copy selected chart to working directory
+        run: |
+          cp -rp helm-charts/$CHART_NAME ${{runner.temp}}/the-chart
+      
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
-        with:
-          charts_dir: helm-charts
-          config: .cr.yaml
+        run: |
+          owner=$(cut -d '/' -f 1 <<< "$GITHUB_REPOSITORY")
+          repo=$(cut -d '/' -f 2 <<< "$GITHUB_REPOSITORY")
+          mkdir .cr-release-packages
+          cr package ${{runner.temp}}/the-chart --package-path .cr-release-packages --config .cr.yaml
+          cr upload -o $owner -r $repo -c "$(git rev-parse HEAD)" --config .cr.yaml --skip-existing
+          mkdir .cr-index
+          cr index -o $owner -r $repo --push --config .cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
