@@ -56,3 +56,6 @@ jobs:
           cr index -o $owner -r $repo --push --config .cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Remove trigger tag
+        run: git push --delete origin ${{ github.ref_name }}
