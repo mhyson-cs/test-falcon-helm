@@ -41,16 +41,12 @@ jobs:
           rm -f cr.tar.gz
           echo "${{runner.temp}}/chart-releaser" >> $GITHUB_PATH
 
-      - name: Copy selected chart to working directory
-        run: |
-          cp -rp helm-charts/$CHART_NAME ${{runner.temp}}/the-chart
-      
       - name: Run chart-releaser
         run: |
           owner=$(cut -d '/' -f 1 <<< "$GITHUB_REPOSITORY")
           repo=$(cut -d '/' -f 2 <<< "$GITHUB_REPOSITORY")
           mkdir .cr-release-packages
-          cr package ${{runner.temp}}/the-chart --package-path .cr-release-packages --config .cr.yaml
+          cr package helm-charts/$CHART_NAME --package-path .cr-release-packages --config .cr.yaml
           cr upload -o $owner -r $repo -c "$(git rev-parse HEAD)" --config .cr.yaml --skip-existing
           mkdir .cr-index
           cr index -o $owner -r $repo --push --config .cr.yaml
