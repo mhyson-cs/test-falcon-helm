@@ -776,6 +776,33 @@ entries:
   falcon-sensor:
   - apiVersion: v2
     appVersion: 1.29.1
+    created: "2024-10-22T21:48:17.846051199Z"
+    description: A Helm chart to deploy CrowdStrike Falcon sensors into Kubernetes
+      clusters.
+    digest: 15f6cd9052d7cfb970ef6792c4f78700e033934ca36c8477a018e8e3edb5c4c8
+    home: https://crowdstrike.com
+    icon: https://raw.githubusercontent.com/CrowdStrike/falcon-helm/main/images/crowdstrike-logo.svg
+    keywords:
+    - CrowdStrike
+    - Falcon
+    - EDR
+    - kubernetes
+    - security
+    - monitoring
+    - alerting
+    kubeVersion: '>1.22.0-0'
+    maintainers:
+    - email: integrations@crowdstrike.com
+      name: CrowdStrike Solutions Architecture
+    name: falcon-sensor
+    sources:
+    - https://github.com/CrowdStrike/falcon-helm
+    type: application
+    urls:
+    - https://github.com/mhyson-cs/test-falcon-helm/releases/download/falcon-sensor-1.30.0/falcon-sensor-1.30.0.tgz
+    version: 1.30.0
+  - apiVersion: v2
+    appVersion: 1.29.1
     created: "2024-07-16T21:29:37.805305409Z"
     description: A Helm chart to deploy CrowdStrike Falcon sensors into Kubernetes
       clusters.
@@ -2827,4 +2854,4 @@ entries:
     urls:
     - https://github.com/CrowdStrike/falcon-helm/releases/download/0.5.0/falcon-sensor-0.5.0.tgz
     version: 0.5.0
-generated: "2024-10-22T21:43:20.252204955Z"
+generated: "2024-10-22T21:48:17.846401403Z"
