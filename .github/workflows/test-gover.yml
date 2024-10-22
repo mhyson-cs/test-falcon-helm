@@ -1,0 +1,13 @@
+name: Test Go Version
+
+on:
+  push:
+    tags:
+      - test-gover
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print go version
+        run: go version
