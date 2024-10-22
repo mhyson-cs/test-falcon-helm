@@ -124,6 +124,16 @@ entries:
     version: 0.43.8
   falcon-image-analyzer:
   - apiVersion: v2
+    appVersion: 1.0.16
+    created: "2024-10-22T19:22:20.542631403Z"
+    description: A Helm chart for Falcon Image Analyzer
+    digest: bffbfbf97dff2f5cc45369d3316c2d9377a05bd80b15432690f0cfc246b40aa7
+    name: falcon-image-analyzer
+    type: application
+    urls:
+    - https://github.com/mhyson-cs/test-falcon-helm/releases/download/falcon-image-analyzer-1.1.10/falcon-image-analyzer-1.1.10.tgz
+    version: 1.1.10
+  - apiVersion: v2
     appVersion: 1.0.13
     created: "2024-06-20T21:29:09.370544669Z"
     description: A Helm chart for Falcon Image Analyzer
@@ -425,6 +435,32 @@ entries:
     - https://github.com/CrowdStrike/falcon-helm/releases/download/falcon-integration-gateway-0.1.1/falcon-integration-gateway-0.1.1.tgz
     version: 0.1.1
   falcon-kac:
+  - apiVersion: v2
+    appVersion: 1.2.0
+    created: "2024-10-22T19:22:20.836202703Z"
+    description: A Helm chart to deploy CrowdStrike Falcon Kubernetes Admission Controller.
+    digest: 2d232503b152d61a89e59a7db3878dd699e2bf5f2ed714a5f5d24c8cc8305035
+    home: https://crowdstrike.com
+    icon: https://raw.githubusercontent.com/CrowdStrike/falcon-helm/main/images/crowdstrike-logo.svg
+    keywords:
+    - CrowdStrike
+    - Falcon
+    - EDR
+    - kubernetes
+    - security
+    - monitoring
+    - alerting
+    kubeVersion: '>1.21.0-0'
+    maintainers:
+    - email: integrations@crowdstrike.com
+      name: CrowdStrike Deployment Engineering
+    name: falcon-kac
+    sources:
+    - https://github.com/CrowdStrike/falcon-helm
+    type: application
+    urls:
+    - https://github.com/mhyson-cs/test-falcon-helm/releases/download/falcon-kac-1.2.0/falcon-kac-1.2.0.tgz
+    version: 1.2.0
   - apiVersion: v2
     appVersion: 1.2.0
     created: "2024-09-12T17:21:36.127685826Z"
@@ -2765,4 +2801,4 @@ entries:
     urls:
     - https://github.com/CrowdStrike/falcon-helm/releases/download/0.5.0/falcon-sensor-0.5.0.tgz
     version: 0.5.0
-generated: "2024-09-12T17:21:36.127989565Z"
+generated: "2024-10-22T19:22:20.836511602Z"
